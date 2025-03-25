@@ -238,13 +238,24 @@ public class Main {
                 String regDate = Util.getNowStr();
                 System.out.print("login ID: ");
                 String loginId = sc.nextLine().trim();
+                //로그인할떄 중복확인하기(로그인을 반복하는 동안 중복되지않는다면 반복문을 탈출하기. 반복문을 탈출해서 변수 값을
+                // 남길려면 반복문 밖에 변수 만들기)
+                //아이디중복은 array배열을 이용/
                 System.out.print("loginPW: ");
                 String loginPw = sc.nextLine().trim();
+                //패스워드입력할때 확인하기(패스워드 입력을 반복하는 동안 동일하다면 반복문을 탈출하기. 반복문을 탈출해서 변수값을
+                // 남길려면 반복문 밖에 변수만들기)
                 System.out.print("닉네임: ");
                 String loginName = sc.nextLine().trim();
+                // 로그인 중복과 비번확인이 끝난 후 닉네임 만들기
 
                 Member member = new Member(id, regDate, loginPw, loginId, loginName);
+                // 인자가 반복문 밖에 있어야만 메서드에 인자를 넣을 수 있음 **** 항상 헷갈려하지않고 기억하기!!!!
+
+                // 순회기능 잊지않기!!!!!!!!!
                 memberList.add(member);
+
+                lastMember = id;
 
 //                if(memberList.size() == lastMember){}
             }
@@ -296,7 +307,7 @@ public class Main {
 //                    }
 //
 //                }
-
+// 로그인의 기능을 잘 생각해야한당 게시글 작성부터 관여할수있도록하는게 로그인 그걸 마치는게 로그아웃
 
                 else if (cmd.equals("article write")) {
                     System.out.println("==게시글 작성==");
