@@ -1,6 +1,8 @@
 package org.example;
 
-
+import org.example.ArticleController;
+import org.example.Controller;
+import org.example.MemberController;
 
 import java.util.Scanner;
 
@@ -15,8 +17,7 @@ public class App {
         MemberController memberController = new MemberController(sc);
         ArticleController articleController = new ArticleController(sc);
 
-
-        articleController.MakeTestData();
+        articleController.makeTestData();
         memberController.makeTestData();
 
         Controller controller = null;
@@ -30,7 +31,6 @@ public class App {
                 continue;
             }
             if (cmd.equals("exit")) {
-                System.out.println("종료");
                 break;
             }
 
@@ -38,34 +38,27 @@ public class App {
 
             String controllerName = cmdBits[0];
 
+            if (cmdBits.length == 1) {
+                System.out.println("명령어 확인 필요");
+                continue;
+            }
+
             String actionMethodName = cmdBits[1];
 
+            if (controllerName.equals("article")) {
+                controller = articleController;
+            } else if (controllerName.equals("member")) {
+                controller = memberController;
+            } else {
+                System.out.println("지원하지 않는 기능입니다");
+                continue;
+            }
 
-//
-//            if (cmd.equals("member join")) {
-//                memberController.doJoin();
-//
-//            } else if (cmd.equals("article write")) {
-//                articleController.write();
-//
-//            } else if (cmd.startsWith("article list")) {
-//                articleController.list(cmd);// app에서만 쓰인 변수 넣어서 메서드에 이용하기
-//
-//            } else if (cmd.startsWith("article detail")) {
-//                articleController.detail(cmd);
-//
-//            } else if (cmd.startsWith("article delete")) {
-//                articleController.delete(cmd);
-//
-//            } else if (cmd.startsWith("article modify")) {
-//                articleController.modify(cmd);
-//            } else {
-//                System.out.println("사용할 수 없는 명령어입니다");
-//            }
+            controller.doAction(cmd, actionMethodName);
 
-
-            System.out.println("==프로그램 끝==");
         }
+
+        System.out.println("==프로그램 끝==");
         sc.close();
     }
 }

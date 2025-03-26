@@ -1,13 +1,12 @@
 package org.example;
 
-public class Article {
-    private int id;
-    private String regDate;
+public class Article extends Dto {
+
     private String updateDate;
     private String title;
     private String body;
 
-    public Article(int id, String regDate, String updateDate, String title, String body) {
+    public Article(int id, String regDate, String updateDate, String title, String body) {// 작성자까지 추가
         this.id = id;
         this.regDate = regDate;
         this.updateDate = updateDate;
