@@ -7,7 +7,6 @@ import java.util.List;
 
 class Util {
     //// 날짜
-
     static String getNowStr(){
         LocalDateTime now = LocalDateTime.now();
         String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
